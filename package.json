@@ -1,0 +1,29 @@
+{
+  "name": "qa-testapi-fahriev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ildar1981/api-test-fahriev.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ildar1981/api-test-fahriev/issues"
+  },
+  "homepage": "https://github.com/Ildar1981/api-test-fahriev#readme",
+  "dependencies": {
+    "jest": "^29.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.5",
+    "@babel/preset-env": "^7.21.5",
+    "@faker-js/faker": "^7.6.0",
+    "babel": "^6.23.0",
+    "babel-jest": "^29.5.0"
+  }
+}
