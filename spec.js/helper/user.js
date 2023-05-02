@@ -47,9 +47,9 @@ const user = {
 
 async function deleteBook(payload){
   const res = await supertest(config.baseUrl)
-    .delete('v1/Books?UserId=123')
+    .delete('v1/Books?UserID=123')
     .set('Accept', 'application/json')
-    .send({payload})
+    .send({ userID: payload.userID, isbn: payload.isbn})
 
     return res;
 }
@@ -58,7 +58,7 @@ async function createBook(payload){
   const res = await supertest(config.baseUrl)
     .delete('/BookStore/v1/Books/1234')
     .set('Accept', 'application/json')
-    .send({payload})
+    .send({userID: payload.userID, isbn: payload.isbn})
 
     return res;
 }
@@ -67,7 +67,7 @@ async function getBook(payload){
   const res = await supertest(config.baseUrl)
     .delete('v1/Books?UserId=123')
     .set('Accept', 'application/json')
-    .send({payload})
+    .send({userID: payload.userID, isbn: payload.isbn})
 
     return res;
 }
@@ -76,7 +76,7 @@ async function getInfoBook(payload){
   const res = await supertest(config.baseUrl)
     .get('BookStore/v1/Book?ISBN=123')
     .set('Accept', 'application/json')
-    .send({payload})
+    .send({userID: payload.userID, isbn: payload.isbn})
 
     return res;
 }

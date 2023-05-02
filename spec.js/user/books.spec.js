@@ -5,11 +5,11 @@ import {createBook} from '../helper/user'
 import{getBook} from '../helper/user'
 import{getInfoBook} from '../helper/user' 
 
+
 describe('user', () => {
-describe('POST /api/v1/login', () => {
     test('Создание книги', async () => {
       const input = {
-        "userId": "123",
+        "userID": "123",
         "isbn": "pirates"
       }
       const res = await createBook(input)
@@ -19,7 +19,7 @@ describe('POST /api/v1/login', () => {
   
   })
 
-  describe('POST /api/v1/login', () => {
+  describe('user', () => {
     test('обновление книги', async () => {
 
       const res = await getInfoBook()
@@ -30,7 +30,7 @@ describe('POST /api/v1/login', () => {
   })
 
   describe('user', () => {
-    test('Получение информации о книге', async () => {
+    test('Информация о книге', async () => {
       const res = await getBook()
       expect(res.status).toEqual(200);
       
@@ -42,7 +42,7 @@ describe('POST /api/v1/login', () => {
     test('Удаление книги', async () => {
         const input = {
             "isbn": "pirates",
-            "userId": "123"
+            "userID": "123"
           }
       const res = await deleteBook(input)
       expect(res.status).toEqual(204);
@@ -50,4 +50,4 @@ describe('POST /api/v1/login', () => {
     })
   
   })
-})
+
