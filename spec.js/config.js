@@ -1,3 +1,7 @@
 export default{
-    baseUrl: 'http://users.bugred.ru'
+    baseUrl: 'https://bookstore.demoqa.com',
+    credentials: {
+        name: 'ildar',
+        password: 'Timur_2017'
+      }
 }

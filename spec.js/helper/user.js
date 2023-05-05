@@ -3,45 +3,86 @@ import supertest from 'supertest'
 import config from '../config.js'
 const { url } = config
 
+let token = ''
 
-  async function login(payload) {
-    const res = await supertest(config.baseUrl)
-      .post('/tasks/rest/doregister')
+
+const user = {
+ 
+  login: (payload) => {
+   
+    return supertest(config.baseUrl)
+      .post('/Account/v1/Authorized')
       .set('Accept', 'application/json')
-      .send({email, name, password})
+      .send(payload)
+  },
+  
+ 
+  async getAuthToken() {
+    const payload = config.credentials
+
+    const res = await this.login(payload) 
+
+    return res.body.token
+  },
+
+
+  async getAuthTokenWithCache() {
+    if (token) {
+      return token
+    }
+
+    token = await this.getAuthToken()
+
+    return token
+  },
+
+  user: (token) => {
+    return supertest(config.baseUrl)
+      .get('/Account/v1/GenerateToken')
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
+      .send()
+  }
+}
+
+async function deleteBook(payload){
+  const res = await supertest(config.baseUrl)
+    .delete('v1/Books?${payload.bookId}')
+    .set('Accept', 'application/json')
+    .send({ userID: payload.userID, isbn: payload.isbn})
 
     return res;
-      
-  }
+}
 
-  async function authorization(payload){
-    const res = await supertest(config.baseUrl)
-      .post('/tasks/rest/dologin')
-      .set('Accept', 'application/json')
-      .send({ email, password })
+async function createBook(payload){
+  const res = await supertest(config.baseUrl)
+    .delete('/BookStore/v1/Books/${payload.bookId}')
+    .set('Accept', 'application/json')
+    .send({userID: payload.userID, isbn: payload.isbn})
 
-      return res;
-  }
+    return res;
+}
 
-  async function getName(payload){
-    const res = await supertest(config.baseUrl)
-      .post('/tasks/rest/getuserfull')
-      .set('Accept', 'application/json')
-      .send({ email, password })
+async function getBook(payload){
+  const res = await supertest(config.baseUrl)
+    .delete('v1/Books?${payload.UserId}')
+    .set('Accept', 'application/json')
+    .send({userID: payload.userID, isbn: payload.isbn})
 
-      return res;
-  }
+    return res;
+}
 
-  async function deleteUser(payload){
-    const res = await supertest(config.baseUrl)
-      .post('/tasks/rest/deleteuser')
-      .set('Accept', 'application/json')
-      .send({ email, password })
+async function getInfoBook(payload){
+  const res = await supertest(config.baseUrl)
+    .get('BookStore/v1/Book?v1/Books?${payload.ISBN}')
+    .set('Accept', 'application/json')
+    .send({userID: payload.userID, isbn: payload.isbn})
 
-      return res;
-  }
+    return res;
+}
 
-  
 export default user
+
+
 
 
